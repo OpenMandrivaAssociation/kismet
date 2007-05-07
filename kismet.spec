@@ -15,6 +15,7 @@ Group: Networking/Other
 License: GPL
 Url: http://www.kismetwireless.net
 Source: http://www.kismetwireless.net/code/kismet-2007-01-R1b.tar.gz
+Patch: kismet-2007-01-R1b-64bits_castfix.patch
 BuildRoot: %_tmppath/%{name}-%{version}-buildroot
 Buildrequires: libncurses-devel 
 Buildrequires: libpcap-devel
@@ -36,6 +37,7 @@ downloaded maps or user supplied image files.
 
 %prep
 %setup -q -n %{name}-2007-01-R1b
+%patch -p1 -b .64bits_castfix
 perl -pi -e 's/-o \$\(INSTUSR\) -g \$\(INSTGRP\)//' Makefile.in
 perl -pi -e 's/-o \$\(INSTUSR\) -g \$\(MANGRP\)//' Makefile.in
 cat <<EOF > fix.h
