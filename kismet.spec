@@ -1,12 +1,11 @@
 %define name kismet
 
-
 # numbering scheme 
 # month + year + tiny
 # i hope they will not release a real 3.1
 # numbering : Year Month Number ( so feb 2004, first version is 040201 )
-%define version 3.1.060413
-%define release %mkrel 2
+%define version 3.1.070101b
+%define release %mkrel 1
 
 Summary: Kismet is an 802.11b/g network sniffer and network dissector
 Name: %name
@@ -15,7 +14,7 @@ Release: %release
 Group: Networking/Other
 License: GPL
 Url: http://www.kismetwireless.net
-Source: http://www.kismetwireless.net/code/%{name}-2006-04-R1.tar.bz2
+Source: http://www.kismetwireless.net/code/kismet-2007-01-R1b.tar.gz
 BuildRoot: %_tmppath/%{name}-%{version}-buildroot
 Buildrequires: libncurses-devel 
 Buildrequires: libpcap-devel
@@ -36,8 +35,7 @@ the ability to plot detected networks and estimated network ranges on
 downloaded maps or user supplied image files.
 
 %prep
-
-%setup -q -n %{name}-2006-04-R1
+%setup -q -n %{name}-2007-01-R1b
 perl -pi -e 's/-o \$\(INSTUSR\) -g \$\(INSTGRP\)//' Makefile.in
 perl -pi -e 's/-o \$\(INSTUSR\) -g \$\(MANGRP\)//' Makefile.in
 cat <<EOF > fix.h
@@ -74,20 +72,17 @@ NN = Number of version this month
 
 This version is labeled  %{name}-%{upstream} on the website.
 EOF
+
 %install
-
-
 rm -rf $RPM_BUILD_ROOT
 export DESTDIR=$RPM_BUILD_ROOT
 
 %makeinstall
-perl -pi -e 's#/usr/local/#/usr/#' $RPM_BUILD_ROOT/%{_sysconfdir}/kismet.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-
 if [ -f %{_sysconfdir}/kismet.conf ] ;
 then
 	if ! egrep -q "^piddir="  %{_sysconfdir}/kismet.conf 
