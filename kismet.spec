@@ -16,6 +16,7 @@ License: GPL
 Url: http://www.kismetwireless.net
 Source: http://www.kismetwireless.net/code/kismet-2007-01-R1b.tar.gz
 Patch: kismet-2007-01-R1b-64bits_castfix.patch
+BuildRoot: %_tmppath/%{name}-%{version}-buildroot
 Buildrequires: libncurses-devel 
 Buildrequires: libpcap-devel
 Buildrequires: ImageMagick-devel
