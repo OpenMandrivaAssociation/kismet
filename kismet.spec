@@ -7,7 +7,7 @@
 %define version 3.1.070101b
 %define release %mkrel 4
 
-Summary: Kismet is an 802.11b/g network sniffer and network dissector
+Summary: 802.11b/g network sniffer and network dissector
 Name: %name
 Version: %version
 Release: %release
