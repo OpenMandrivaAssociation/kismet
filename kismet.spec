@@ -5,7 +5,7 @@
 # i hope they will not release a real 3.1
 # numbering : Year Month Number ( so feb 2004, first version is 040201 )
 %define version 3.1.070101b
-%define release %mkrel 4
+%define release %mkrel 5
 
 Summary: 802.11b/g network sniffer and network dissector
 Name: %name
