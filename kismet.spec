@@ -5,7 +5,7 @@
 # i hope they will not release a real 3.1
 # numbering : Year Month Number ( so feb 2004, first version is 040201 )
 %define version 3.1.070101b
-%define release %mkrel 7
+%define release %mkrel 8
 
 Summary: 802.11b/g network sniffer and network dissector
 Name: %name
@@ -16,7 +16,7 @@ License: GPL
 Url: http://www.kismetwireless.net
 Source: http://www.kismetwireless.net/code/kismet-2007-01-R1b.tar.gz
 Patch: kismet-2007-01-R1b-64bits_castfix.patch
-BuildRoot: %_tmppath/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildrequires: libncurses-devel 
 Buildrequires: libpcap-devel
 Buildrequires: imagemagick-devel
