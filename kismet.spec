@@ -4,8 +4,8 @@
 # month + year + tiny
 # i hope they will not release a real 3.1
 # numbering : Year Month Number ( so feb 2004, first version is 040201 )
-%define version 3.1.070101b
-%define release %mkrel 8
+%define version 3.1.0805291
+%define release %mkrel 1
 
 Summary: 802.11b/g network sniffer and network dissector
 Name: %name
@@ -14,9 +14,8 @@ Release: %release
 Group: Networking/Other
 License: GPL
 Url: http://www.kismetwireless.net
-Source: http://www.kismetwireless.net/code/kismet-2007-01-R1b.tar.gz
-Patch: kismet-2007-01-R1b-64bits_castfix.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Source0: http://www.kismetwireless.net/code/kismet-2008-05-R1.tar.gz
+Patch0: kismet-typo_fix.diff
 Buildrequires: libncurses-devel 
 Buildrequires: libpcap-devel
 Buildrequires: imagemagick-devel
@@ -25,6 +24,7 @@ Buildrequires: glib-devel
 BuildRequires: flex 
 Buildrequires: bison
 Buildrequires: gpsd-devel gmp-devel expat-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Kismet is an 802.11b/g network sniffer and network dissector. It is
@@ -36,8 +36,10 @@ the ability to plot detected networks and estimated network ranges on
 downloaded maps or user supplied image files.
 
 %prep
-%setup -q -n %{name}-2007-01-R1b
-%patch -p1 -b .64bits_castfix
+
+%setup -q -n %{name}-2008-05-R1
+%patch0 -p0
+
 perl -pi -e 's/-o \$\(INSTUSR\) -g \$\(INSTGRP\)//' Makefile.in
 perl -pi -e 's/-o \$\(INSTUSR\) -g \$\(MANGRP\)//' Makefile.in
 cat <<EOF > fix.h
@@ -52,7 +54,7 @@ EOF
 
 %build
 export WANT_AUTOCONF_2_5=1
-autoconf
+autoreconf -fis
 %configure --without-ethereal 
 #--enable-syspcap
 %make
