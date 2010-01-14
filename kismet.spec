@@ -17,6 +17,7 @@ Url: http://www.kismetwireless.net
 Source0: http://www.kismetwireless.net/code/kismet-2008-05-R1.tar.gz
 Patch0: kismet-typo_fix.diff
 Patch1: kismet-format-security.patch
+Patch2: kismet-2008.05.1-glibc-2.10.patch
 Buildrequires: libncurses-devel 
 Buildrequires: libpcap-devel
 Buildrequires: imagemagick-devel
@@ -37,10 +38,10 @@ the ability to plot detected networks and estimated network ranges on
 downloaded maps or user supplied image files.
 
 %prep
-
 %setup -q -n %{name}-2008-05-R1
 %patch0 -p0
 %patch1 -p1
+%patch2 -p0
 
 perl -pi -e 's/-o \$\(INSTUSR\) -g \$\(INSTGRP\)//' Makefile.in
 perl -pi -e 's/-o \$\(INSTUSR\) -g \$\(MANGRP\)//' Makefile.in
@@ -55,10 +56,8 @@ cat <<EOF > fix.h
 EOF
 
 %build
-export WANT_AUTOCONF_2_5=1
-autoreconf -fis
-%configure --without-ethereal 
-#--enable-syspcap
+autoreconf -fi
+%configure2_5x
 %make
 cat <<EOF >README.Mandriva
 Since 3.1, kismet changed the configuration format,
@@ -81,9 +80,7 @@ EOF
 
 %install
 rm -rf $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-
-%makeinstall
+%makeinstall_std
 
 %clean
 rm -rf $RPM_BUILD_ROOT
