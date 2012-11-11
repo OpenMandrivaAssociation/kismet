@@ -1,0 +1,16 @@
+Preserve environment when calling the kismet_capture client. We need
+stuff like $DISPLAY or $XAUTHORITY to display the consolehelper dialog.
+
+Index: kismet-2010-07-R1/ipc_remote.cc
+===================================================================
+--- kismet-2010-07-R1.orig/ipc_remote.cc
++++ kismet-2010-07-R1/ipc_remote.cc
+@@ -342,7 +342,7 @@ int IPCRemote::SpawnIPC() {
+ 				// We're running as the child here, we have to pass this failure
+ 				// up in the return value and this doesn't cause an immediate exit
+ 				// with error for the caller...
+-				if (execve(cmdarg[0], cmdarg, NULL) < 0) {
++				if (execve(cmdarg[0], cmdarg, globalreg->envp) < 0) {
+ 					int status = errno;
+ 
+ 					string fail = "Failed to launch IPC child: " +
