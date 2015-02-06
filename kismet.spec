@@ -4,7 +4,7 @@
 Summary:	802.11b/g network sniffer and network dissector
 Name:		kismet
 Version:	%{version}
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.kismetwireless.net
