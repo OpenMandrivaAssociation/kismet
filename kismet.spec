@@ -45,7 +45,7 @@ downloaded maps or user supplied image files.
 
 %prep
 %setup -qn %{name}-%{oversion}
-%apply_patches
+%autopatch -p1
 
 sed -i 's#\$(prefix)/lib/#%{_libdir}/#g' plugin-*/Makefile
 
