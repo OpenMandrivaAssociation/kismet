@@ -7,7 +7,7 @@ Version:	%{version}
 Release:	3
 License:	GPLv2+
 Group:		Networking/Other
-Url:		http://www.kismetwireless.net
+Url:		https://www.kismetwireless.net
 Source0:	http://www.kismetwireless.net/code/%{name}-%{oversion}.tar.gz
 Patch1:		kismet-2009-06-R1-envp.patch
 BuildRequires:	bison
