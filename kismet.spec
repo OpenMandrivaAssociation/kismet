@@ -10,6 +10,11 @@ Group:		Networking/Other
 Url:		https://www.kismetwireless.net
 Source0:	http://www.kismetwireless.net/code/%{name}-%{oversion}.tar.gz
 Patch1:		kismet-2009-06-R1-envp.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	wget
